@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+  <title>Competición Crossfit Castro Urdiales 2026</title>
+</head>
+
+<body>
+
+<header>
+  <img src="img/Banner2026.png" alt="Banner" class="banner">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#registerForm">
+            Haz clic y registra a tu equipo
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<section id="registration" class="container py-3">
+
+  <h2>Ranking</h2>
+  <br>
+
+  <ul class="nav nav-tabs" id="rankingTabs" role="tablist">
+
+    <li class="nav-item">
+      <button
+        class="nav-link active"
+        id="general-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#general"
+        type="button">
+        General
+      </button>
+    </li>
+
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        id="wod1-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#wod1"
+        type="button">
+        Evento 1
+      </button>
+    </li>
+
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        id="wod2-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#wod2"
+        type="button">
+        Evento 2
+      </button>
+    </li>
+
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        id="wod3-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#wod3"
+        type="button">
+        Evento 3
+      </button>
+    </li>
+
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        id="wod4-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#wod4"
+        type="button">
+        Evento 4
+      </button>
+    </li>
+
+  </ul>
+
+  <br>
+
+  <div class="tab-content" id="rankingTabsContent">
+
+    <!-- GENERAL -->
+    <div class="tab-pane fade show active" id="general">
+      <h2>Ranking General</h2>
+      <div id="general_parejas" class="list-group"></div>
+    </div>
+
+    <!-- WOD 1 -->
+    <div class="tab-pane fade" id="wod1">
+      <h2>Ranking WOD 1</h2>
+      <p>For Time · Cap 15 minutos</p>
+      <div id="wod1_parejas" class="list-group"></div>
+    </div>
+
+    <!-- WOD 2 -->
+    <div class="tab-pane fade" id="wod2">
+      <h2>Ranking WOD 2</h2>
+      <p>AMRAP · 8 minutos</p>
+      <div id="wod2_parejas" class="list-group"></div>
+    </div>
+
+    <!-- WOD 3 -->
+    <div class="tab-pane fade" id="wod3">
+      <h2>Ranking WOD 3</h2>
+      <p>RM de C&J</p>
+      <div id="wod3_parejas" class="list-group"></div>
+    </div>
+
+    <!-- WOD 4 -->
+    <div class="tab-pane fade" id="wod4">
+      <h2>Ranking WOD 4</h2>
+      <p>For Time · Cap 10 minutos</p>
+      <div id="wod4_parejas" class="list-group"></div>
+    </div>
+
+  </div>
+
+  <br>
+
+  <h2>💪 Forma tu pareja y regístrate aquí</h2>
+
+  <form id="registerForm" class="mb-3">
+
+    <label for="teamName" class="form-label">
+      Nombre del equipo:
+    </label>
+
+    <input
+      type="text"
+      id="teamName"
+      required
+      class="form-control">
+
+    <label for="athlete1" class="form-label mt-2">
+      Atleta 1:
+    </label>
+
+    <input
+      type="text"
+      id="athlete1"
+      required
+      class="form-control">
+
+    <label for="athlete2" class="form-label mt-2">
+      Atleta 2:
+    </label>
+
+    <input
+      type="text"
+      id="athlete2"
+      required
+      class="form-control">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between mt-3">
+
+      <button
+        type="submit"
+        class="btn btn-danger btn-lg">
+        Confirmar
+      </button>
+
+    </div>
+
+  </form>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js" type="module"></script>
+
+</body>
+</html>

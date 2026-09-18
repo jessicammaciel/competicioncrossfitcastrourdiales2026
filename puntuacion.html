@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Panel</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+  <img src="img/logo.png" alt="logo" class="logo">
+
+  <h1>Panel actualización de resultados</h1>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="container-fluid">
+
+      <ul class="navbar-nav me-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            RANKING
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<section id="admin" class="container py-3">
+
+  <h2>Actualizar Resultados</h2>
+
+  <br>
+
+  <form id="scoreForm">
+
+    <!-- EQUIPO -->
+
+    <label for="participant" class="form-label">
+      Equipo:
+    </label>
+
+    <select
+      id="participant"
+      required
+      class="form-select">
+    </select>
+
+
+    <!-- WOD -->
+
+    <label for="wod" class="form-label mt-3">
+      WOD:
+    </label>
+
+    <select
+      id="wod"
+      required
+      class="form-select">
+
+      <option value="">Selecciona un WOD</option>
+
+      <option value="wod1">
+        WOD 1 - For Time 15'
+      </option>
+
+      <option value="wod2">
+        WOD 2 - AMRAP 8'
+      </option>
+
+      <option value="wod3">
+        WOD 3 - RM
+      </option>
+
+      <option value="wod4">
+        WOD 4 - For Time 10'
+      </option>
+
+    </select>
+
+
+    <!-- ========================= -->
+    <!-- FOR TIME WOD 1 / WOD 4 -->
+    <!-- ========================= -->
+
+    <div
+      id="forTimeFields"
+      class="wod-fields mt-4"
+      style="display:none;">
+
+      <h4>Resultado For Time</h4>
+
+      <label class="form-label">
+        ¿WOD completado?
+      </label>
+
+      <div>
+
+        <input
+          type="radio"
+          name="wodCompleted"
+          value="yes"
+          id="wodCompletedYes">
+
+        <label for="wodCompletedYes">
+          Sí
+        </label>
+
+
+        <input
+          type="radio"
+          name="wodCompleted"
+          value="no"
+          id="wodCompletedNo"
+          class="ms-3">
+
+        <label for="wodCompletedNo">
+          No
+        </label>
+
+      </div>
+
+
+      <label
+        for="time"
+        class="form-label mt-3">
+
+        Tiempo (segundos):
+
+      </label>
+
+      <input
+        type="number"
+        id="time"
+        min="1"
+        class="form-control"
+        placeholder="Ejemplo: 540">
+
+
+      <label
+        for="reps"
+        class="form-label mt-3">
+
+        Repeticiones si no completa:
+
+      </label>
+
+      <input
+        type="number"
+        id="reps"
+        min="0"
+        class="form-control"
+        placeholder="Número de repeticiones">
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- AMRAP WOD 2 -->
+    <!-- ========================= -->
+
+    <div
+      id="amrapFields"
+      class="wod-fields mt-4"
+      style="display:none;">
+
+      <h4>Resultado AMRAP</h4>
+
+      <label
+        for="amrapReps"
+        class="form-label">
+
+        Repeticiones:
+
+      </label>
+
+      <input
+        type="number"
+        id="amrapReps"
+        min="0"
+        class="form-control"
+        placeholder="Total de repeticiones">
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- RM WOD 3 -->
+    <!-- ========================= -->
+
+    <div
+      id="rmFields"
+      class="wod-fields mt-4"
+      style="display:none;">
+
+      <h4>Resultado RM</h4>
+
+      <label
+        for="weight"
+        class="form-label">
+
+        Peso levantado (kg):
+
+      </label>
+
+      <input
+        type="number"
+        id="weight"
+        min="0"
+        step="0.5"
+        class="form-control"
+        placeholder="Peso levantado en kg">
+
+    </div>
+
+
+    <div class="d-flex gap-2 mt-4">
+
+      <button
+        type="submit"
+        class="btn btn-danger btn-lg">
+
+        Actualizar
+
+      </button>
+
+      <button
+        id="deleteParticipant"
+        type="button"
+        class="btn btn-outline-danger btn-lg">
+
+        Borrar Equipo
+
+      </button>
+
+    </div>
+
+  </form>
+
+
+  <hr class="my-5">
+
+
+  <h2>Lista de equipos</h2>
+
+
+  <ul
+    class="nav nav-tabs"
+    id="rankingTabs">
+
+    <li class="nav-item">
+
+      <button
+        class="nav-link active"
+        data-bs-toggle="tab"
+        data-bs-target="#general">
+
+        General
+
+      </button>
+
+    </li>
+
+
+    <li class="nav-item">
+
+      <button
+        class="nav-link"
+        data-bs-toggle="tab"
+        data-bs-target="#wod1">
+
+        Evento 1
+
+      </button>
+
+    </li>
+
+
+    <li class="nav-item">
+
+      <button
+        class="nav-link"
+        data-bs-toggle="tab"
+        data-bs-target="#wod2">
+
+        Evento 2
+
+      </button>
+
+    </li>
+
+
+    <li class="nav-item">
+
+      <button
+        class="nav-link"
+        data-bs-toggle="tab"
+        data-bs-target="#wod3">
+
+        Evento 3
+
+      </button>
+
+    </li>
+
+
+    <li class="nav-item">
+
+      <button
+        class="nav-link"
+        data-bs-toggle="tab"
+        data-bs-target="#wod4">
+
+        Evento 4
+
+      </button>
+
+    </li>
+
+  </ul>
+
+
+  <div class="tab-content mt-3">
+
+
+    <div
+      class="tab-pane fade show active"
+      id="general">
+
+      <h2>Ranking General</h2>
+
+      <div
+        id="general_parejas"
+        class="list-group">
+      </div>
+
+    </div>
+
+
+    <div
+      class="tab-pane fade"
+      id="wod1">
+
+      <h2>Ranking WOD 1</h2>
+
+      <div
+        id="wod1_parejas"
+        class="list-group">
+      </div>
+
+    </div>
+
+
+    <div
+      class="tab-pane fade"
+      id="wod2">
+
+      <h2>Ranking WOD 2</h2>
+
+      <div
+        id="wod2_parejas"
+        class="list-group">
+      </div>
+
+    </div>
+
+
+    <div
+      class="tab-pane fade"
+      id="wod3">
+
+      <h2>Ranking WOD 3</h2>
+
+      <div
+        id="wod3_parejas"
+        class="list-group">
+      </div>
+
+    </div>
+
+
+    <div
+      class="tab-pane fade"
+      id="wod4">
+
+      <h2>Ranking WOD 4</h2>
+
+      <div
+        id="wod4_parejas"
+        class="list-group">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+
+const wodSelect = document.getElementById("wod");
+
+const forTimeFields = document.getElementById("forTimeFields");
+const amrapFields = document.getElementById("amrapFields");
+const rmFields = document.getElementById("rmFields");
+
+const timeInput = document.getElementById("time");
+const repsInput = document.getElementById("reps");
+
+
+wodSelect.addEventListener("change", function () {
+
+  document
+    .querySelectorAll(".wod-fields")
+    .forEach(field => field.style.display = "none");
+
+
+  if (this.value === "wod1" || this.value === "wod4") {
+
+    forTimeFields.style.display = "block";
+
+  }
+
+  else if (this.value === "wod2") {
+
+    amrapFields.style.display = "block";
+
+  }
+
+  else if (this.value === "wod3") {
+
+    rmFields.style.display = "block";
+
+  }
+
+});
+
+
+document
+  .querySelectorAll('input[name="wodCompleted"]')
+  .forEach(radio => {
+
+    radio.addEventListener("change", function () {
+
+      if (this.value === "yes") {
+
+        timeInput.disabled = false;
+        repsInput.disabled = true;
+
+        repsInput.value = "";
+
+      } else {
+
+        timeInput.disabled = true;
+        repsInput.disabled = false;
+
+        timeInput.value = "";
+
+      }
+
+    });
+
+  });
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script
+  src="js/script.js"
+  type="module">
+</script>
+
+</body>
+</html>
